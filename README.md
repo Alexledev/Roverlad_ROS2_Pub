@@ -23,7 +23,7 @@
 ---
 
 ## Overview
-### A Jetson Orin Nano-powered autonomous vehicle with ROS2 Navigation, SLAM mapping, custom Webapp(UI), and STM32 firmware
+### An autonomous mobile robot system with embedded real-time control, ROS2 navigation, AI-based perception, and a web-based monitoring interface.
 The car features:
 - **SLAM mapping and localisation** as well as **Nav2 navigation and pathfinding** using LIDAR and ROS2 Jazzy.
 - **Object Detection** with YOLOv8s and OpenCV camera stream for emergency slow and stop for nearby obstacles.
