@@ -1,0 +1,18 @@
+twist_mux:
+  ros__parameters:
+    use_stamped: false               # required field
+    topics:
+      obs:
+        topic: /cmd_vel_safety
+        timeout: 1.0
+        priority: 100
+      teleop:
+        topic: /cmd_vel_teleop
+        timeout: 0.2
+        priority: 50
+      nav:
+        topic: /cmd_vel_nav
+        timeout: 0.2
+        priority: 10
+
+    # cmd_vel_out: /cmd_vel            # output topic

@@ -1,0 +1,48 @@
+# version: "3.9"
+
+services:
+  roverviz:
+    image: roverlad_vision
+    restart: unless-stopped
+    container_name: roverlad_vision_cont
+    network_mode: host
+    runtime: nvidia
+
+    stdin_open: true
+    tty: true
+    command: bash
+
+    privileged: true
+    
+    devices:
+      - /dev/video0:/dev/video0
+    group_add:
+      - video
+    
+    environment:
+      LD_LIBRARY_PATH: /usr/local/cuda/lib64:/usr/lib/aarch64-linux-gnu:/opt/onnxruntime/lib
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility
+      
+    volumes:
+      - /lib/firmware:/lib/firmware
+      - /usr/local/cuda:/usr/local/cuda:ro
+      - /usr/lib/aarch64-linux-gnu:/usr/lib/aarch64-linux-gnu:ro
+      - /home/jetsonalex/onnxruntime/include:/opt/onnxruntime/include
+      - /home/jetsonalex/onnxruntime/onnxruntime:/opt/onnxruntime/onnxruntime
+      - /home/jetsonalex/onnxruntime/build/Linux/Release:/opt/onnxruntime/lib:ro
+      
+      - /home/jetsonalex/Roverlad_ROS2/dashboard/config/config.yaml:/home/app/config/config.yaml
+
+# Build instructions:
+
+# /Roverlad_ROS2/roverlad_vision$                 sudo docker build -t roverlad_vision .
+
+# run with /Roverlad_ROS2/roverlad_vision$        sudo docker compose up
+
+# TO use the terminal
+# > do docker compose up with parameters  > stdin_open: true
+#                                         > tty: true
+#                                         > command: bash
+
+# > detach and run                                sudo docker exec -it roverlad_vision_cont bash 

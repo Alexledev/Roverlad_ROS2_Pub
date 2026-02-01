@@ -1,0 +1,9 @@
+.vscode/
+build/
+install/
+log/
+src/.vscode/
+src/log/
+dashboard/.vscode
+roverlad_vision/model/yolov5n.onnx
+roverlad_vision/model/yolov8s.onnx

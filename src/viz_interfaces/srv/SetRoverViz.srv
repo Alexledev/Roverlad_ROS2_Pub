@@ -1,0 +1,4 @@
+bool enable
+bool ai_mode
+---
+bool success

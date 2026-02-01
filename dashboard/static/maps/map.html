@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark">
+  <head>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/maps/map.css">
+  </head>
+
+  <body>
+   
+
+    <fieldset id="rover_container_fieldset" disabled>
+      <div class="rover-container">
+        <div class="img-container" id="img_container">   
+          <div>
+            <img id="map_stream" draggable="false" class="image-main"/>
+          </div>
+
+          <div class="lidar-canvas">
+            <canvas id="pointcloud"></canvas>
+          </div>
+
+          <div class="circle-wrap">
+            <svg viewBox="0 0 20 20">
+              <path
+                d="M20 10 L2 2 L6 10 L2 18 Z"
+                fill="#3b82f6"
+              />
+            </svg>
+          </div>
+
+          <div class="flag-pole">
+            <svg viewBox="0 0 40 60" xmlns="http://www.w3.org/2000/svg">
+              <!-- Pole -->
+              <rect x="18" y="0" width="3" height="60" fill="#444"/>
+
+              <!-- Flag -->
+              <polygon points="21,6 40,18 21,28" fill="#FF1A1A"/>
+
+              <circle cx="19.5" cy="60" r="3" fill="#444"/>
+            </svg>
+          </div>
+
+          <div id="video_holder" class="video-holder"></div>
+        </div>
+
+        <div class="start-holder">
+          <div>
+            <button id="btn_start" class="btn btn-success" disabled>Start</button>
+            <h4 id="Title">Map Name</h4>
+          </div>       
+
+          <div>
+            <div id="stream_status">Status: Not connected</div>
+            <button id="start_stream" class="btn btn-primary">Start</button>
+            <button id="stop_stream" class="btn btn-secondary" disabled>Stop</button>
+          </div>
+        </div>
+
+        <div class="selection-area">
+          <ul id="mapList" class="list-group map-list"></ul>
+          <div >
+            <img id="previewImg" class="preview-img" src="/static/maps/placeholder.jpg">
+          </div>
+        </div>
+
+        <div >
+          <button id="btn_delete" class="btn btn-outline-danger" disabled><span class="material-icons align-middle">delete</span></button>
+          <button id="btn_mapls" class="btn btn-primary" title="Unselect">Refresh</button>
+          <button id="btn_mapslt" class="btn btn-primary" disabled>Use Selected</button>
+          <button id="btn_download" class="btn btn-primary" disabled>Download</button>
+          <div class="upload-container">
+            <input type="file" accept=".zip" id="fileInput">
+            <button id="btn_upload" class="btn btn-primary" disabled>Upload</button>
+          </div>      
+        </div>
+
+      </div>
+
+      <div class="rover-container">
+        <pre id="log"></pre>
+      </div>
+    </fieldset>
+   
+  </body>
+  <script type="module" src="/static/maps/navmap.js">   
+
+  </script>
+</html>
+

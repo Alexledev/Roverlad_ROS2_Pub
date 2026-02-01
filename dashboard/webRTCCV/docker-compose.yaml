@@ -1,0 +1,27 @@
+
+services:
+  webrtc:
+    image: roverlad_rtc_roscv
+    restart: unless-stopped
+    container_name: roverlad_webrtc_cv_cont
+    network_mode: host
+    devices:
+      - /dev/video0:/dev/video0
+      - /dev/snd:/dev/snd
+    group_add:
+      - audio
+      - video    
+
+    stdin_open: true
+    tty: true
+    command: bash
+
+
+
+# Build instructions:
+
+# /Roverlad_ROS2/dashboard/webRTCCV$          docker build -t roverlad_rtc_roscv .
+
+# run with /Roverlad_ROS2/dashboard/webRTCCV$ docker compose up
+
+# > detach and run                            sudo docker exec -it roverlad_webrtc_cv_cont bash 

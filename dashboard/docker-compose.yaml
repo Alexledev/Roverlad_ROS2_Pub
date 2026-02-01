@@ -1,0 +1,68 @@
+# version: "3.9"
+
+services:
+  webapi:
+    image: roverlad_apisocket
+    restart: unless-stopped
+    container_name: roverlad_webAPISocket_cont
+    network_mode: host
+    volumes:
+      - /home/jetsonalex/Roverlad_ROS2/install/roverlad_mapping/share/roverlad_mapping/maps:/home/app/stored_maps/maps
+      - /home/jetsonalex/Roverlad_ROS2/dashboard/working_maps:/home/app/working_maps
+      - /home/jetsonalex/Roverlad_ROS2/dashboard/config/config.yaml:/home/app/config/config.yaml
+    
+  webrtc:
+    image: roverlad_rtc_roscv
+    restart: unless-stopped
+    container_name: roverlad_webrtc_cv_cont
+    network_mode: host
+    devices:
+      - /dev/video0:/dev/video0
+      - /dev/snd:/dev/snd
+    group_add:
+      - audio
+      - video    
+    volumes:
+      - /home/jetsonalex/Roverlad_ROS2/dashboard/config/config.yaml:/home/app/config/config.yaml
+
+    stdin_open: true
+    tty: true
+    command: bash
+
+  webui:
+    image: roverlad_ui
+    restart: unless-stopped
+    container_name: roverlad_ui_cont
+    network_mode: host
+    volumes:
+      - /home/jetsonalex/Roverlad_ROS2/dashboard/working_maps:/home/app/static/maps/working_maps
+   
+# Build instructions:
+
+# /Roverlad_ROS2/dashboard/static$            sudo docker build -t roverlad_ui .
+# /Roverlad_ROS2/dashboard/webRTCCV$          sudo docker build -t roverlad_rtc_roscv .
+# /Roverlad_ROS2/dashboard/webAPISocket$      sudo docker build -t roverlad_apisocket .
+
+# run with /Roverlad_ROS2/dashboard$          sudo docker compose up
+
+# > The Ros2 Env must have
+#
+# ENV ROS_DOMAIN_ID=10
+# ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+# ENV ROS_AUTOMATIC_DISCOVERY_RANGE=SUBNET
+# ENV CYCLONEDDS_URI=cyclone.xml (copy out cyclone.xml)
+
+# RTC console:                               sudo docker exec -it roverlad_webrtc_cv_cont bash 
+
+
+# For when you can't connect on other devices:
+
+# sudo ufw allow 80/tcp             <- connect to pages
+# sudo ufw allow 32768:60999/udp    <- webrtc media
+# sudo ufw reload
+
+
+
+# Legacy
+
+# /Roverlad_ROS2/dashboard/webRTC$          sudo docker build -t roverlad_rtc .

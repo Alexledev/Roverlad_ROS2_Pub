@@ -1,0 +1,9 @@
+<library path="roverlad_firmware">
+    <class name="roverlad_firmware/RoverladInterface"
+            type="roverlad_firmware::RoverladInterface"
+            base_class_type="hardware_interface::SystemInterface">
+        <description>
+            Roverlad Hardware Interface
+        </description>    
+    </class>
+</library>

@@ -1,0 +1,259 @@
+@import "styles.css";
+
+
+.map-holder
+{
+    background-color: rgb(46, 46, 46);
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+
+    height: 40rem;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.canvas-holder {
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.map-canvas {
+   
+    display: block;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.video-holder
+{
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    border-radius: 0.5rem;
+}
+
+.control-panel
+{
+  /* background-color: aqua; */
+  height: 100%;
+  width: 15rem;
+  margin: 0rem 1rem 0 auto;
+  position: absolute;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.control-panel > div:not(:last-child)
+{
+  margin: 1rem 1rem 0rem auto;
+}
+
+.speed-bar
+{
+  transform: rotate(-90deg);
+  height: 15rem;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.speed-bar > input
+{
+  margin-bottom: 1rem;
+}
+
+.speed-bar > span
+{
+  transform: rotate(90deg);
+  margin-bottom: 1rem;
+}
+
+.dpad-holder
+{
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  margin: auto 1rem 1rem auto;
+}
+
+.rover-container > section
+{
+  flex: 1;
+}
+
+.button-menu {
+  display: flex;
+  gap: 1rem;
+}
+
+.button-menu > div
+{
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: rgb(46, 46, 46);
+}
+
+.button-menu > div > div:first-child
+{
+  margin-bottom: 0.5rem;
+}
+
+.button-menu > div:first-child
+{
+  flex: 3;
+}
+
+.button-menu > div:first-child > button:last-child
+{
+  margin: 0 0.5rem;
+}
+
+.button-menu > div:last-child
+{
+  flex: 7;
+}
+
+.button-menu > div:last-child > input
+{
+  margin: 0 0.2rem 0 1rem;
+  height: 2.25rem;
+}
+
+.panel {
+  background: #161a22;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.waitButton:disabled {
+  cursor: wait !important;
+}
+
+input[type="range"] {
+  flex: 1;
+}
+
+.camera-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.camera-panel > div {
+  display: flex;
+  gap: 8px;
+}
+
+
+#camera {
+  background: black;
+  border-radius: 6px;
+  object-fit: contain;      /* critical */
+  image-rendering: auto;
+  transition: width 0.15s ease, height 0.15s ease; /* smooth resize */
+}
+
+.sliders {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 140px;
+}
+
+label {
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dpad {
+  display: grid;
+  grid-template-columns: 0.33fr 0.33fr 0.33fr;
+  grid-template-rows: 0.33fr 0.33fr 0.33fr;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.dpad button {
+  height: 2.5rem;
+  border-radius: 0.25rem;
+  /* border: none; */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+/* D-pad layout */
+.dpad button[data-dir="up"]    { grid-column: 2; grid-row: 1; }
+.dpad button[data-dir="left"]  { grid-column: 1; grid-row: 2; }
+.dpad button[data-dir="right"] { grid-column: 3; grid-row: 2; }
+.dpad button[data-dir="down"]  { grid-column: 2; grid-row: 3; }
+
+pre {
+  background: #0b0d12;
+  padding: 8px;
+  border-radius: 6px;
+  max-height: 120px;
+  overflow: auto;
+  font-size: 11px;
+}
+
+#video_stream {
+  /* width: 100%; */
+  background: black;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
+}
+
+/* Mobile landscape */
+@media (max-height: 512px) and (orientation: landscape) {
+  
+  .container  {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .container > section:nth-child(1)
+  {
+    display: none;
+  }
+
+  .container > section:nth-child(2)
+  {
+    flex: 3;
+  }
+
+  .container > section:nth-child(3)
+  {
+    flex: 1;
+  }
+
+  .dpad button {
+    height: 4rem
+  }
+  /* .container > section:not(:first-child)
+  {
+    flex: 1;
+  } */
+}
